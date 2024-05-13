@@ -48,7 +48,7 @@ We now create `weather-mapping.ttl`, add the following prefixes and a base IRI t
 @base <http://example.com/ns#>.
 ```
 
-The namespace `geo` is used for GeoSPARQL. The names spaces `rr`, 'rml', `rdfs`, and `xsd` refer to the namespaces for R2RML, RML, RDFS, and XSD respectively. We will use `geo2` for publishing the longitude and latitude in another vocabulary (next to GeoSPARQL). We furthermore assume the existence of an ontology prefixed with `fcc` for some concepts and relations. In addition, `ql` refers to a vocabulary linked to queries for the semantic web.
+The namespace `geo` is used for GeoSPARQL. The names spaces `rr`, `rml`, `rdfs`, and `xsd` refer to the namespaces for R2RML, RML, RDFS, and XSD respectively. We will use `geo2` for publishing the longitude and latitude in another vocabulary (next to GeoSPARQL). We furthermore assume the existence of an ontology prefixed with `fcc` for some concepts and relations. In addition, `ql` refers to a vocabulary linked to queries for the semantic web.
 
 # 2 A Triples Map for Weather Stations
 
