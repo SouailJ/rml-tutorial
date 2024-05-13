@@ -1,6 +1,7 @@
-# R2RML: A Step-by-step Tutorial
+# RML: A Step-by-step Tutorial
 
-[Christophe Debruyne ](http://christophedebruyne.be/)  
+Souail Jaadari
+based on the work of [Christophe Debruyne ](http://christophedebruyne.be/)  
 ---
 [ADAPT](https://www.adaptcentre.ie/), [Trinity College Dublin](https://www.tcd.ie/)  
 [WISE](https://wise.vub.ac.be/), [Vrije Universiteit Brussel](https://www.vub.be/)
