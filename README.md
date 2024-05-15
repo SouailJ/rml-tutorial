@@ -9,7 +9,7 @@ This tutorial is based on the [R2RML Step-by-step tutorial](https://github.com/c
 
 # 1 Introduction
 
-The goal of this tutorial is to familiarize the reader with some core concepts of [RML](https://rml.io/specs/rml/). The RML engine we will use is [RML Mapper](https://github.com/RMLio/rmlmapper-java/releases/tag/v6.5.1). In this tutorial, it is assumed that the reader has downloaded or installed an RML engine.
+The goal of this tutorial is to familiarize the reader with some core concepts of [RML](https://rml.io/specs/rml/). The RML engine we will use is [RML Mapper](https://github.com/RMLio/rmlmapper-java/releases/tag/v6.5.1). In this tutorial, it is assumed that the reader has downloaded or installed an RML engine. However, if this is not the case, we recommend downloading the `.jar` file for the [RML Mapper](https://github.com/RMLio/rmlmapper-java/releases/tag/v6.5.1) engine and adding it to your working folder.
 
 Unlike R2RML, RML lets us map structured data (CSV, JSON, XML) to RDF. For the purposes of this tutorial, we'll use a CSV file to store our data.
 
