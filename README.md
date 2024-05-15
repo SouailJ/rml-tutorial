@@ -1,11 +1,8 @@
 # RML: A Step-by-step Tutorial
 
-<span style="font-size:40px;">Souail Jaadari, engineering student at Polytech Orléans</span>
+Souail Jaadari, engineering student at Polytech Orléans
 
-
-<span style="font-size:16px;">This tutorial is based on the [R2RML Step-by-step tutorial](https://github.com/chrdebru/r2rml-tutorial/tree/master) of [Christophe Debruyne ](http://christophedebruyne.be/)  </span>
-
-
+This tutorial is based on the [R2RML Step-by-step tutorial](https://github.com/chrdebru/r2rml-tutorial/tree/master) of [Christophe Debruyne ](http://christophedebruyne.be/)
 
 # 1 Introduction
 
