@@ -23,18 +23,7 @@ The CSV file we will transform into RDF is [weatherstations.csv](./files/weather
 
 Note that the column "Weather_Reading" contains URLs in the file. We have omitted those for brevity. We will transform the contents of this CSV file into RDF using the [GeoSPARQL](https://www.opengeospatial.org/standards/geosparql). In GeoSPARQL, there is a distinction between features and geometries. Features are the "things" that one can represent on a map, and geometries are the way those things are represented using points, lines, polygons, etc. For each record in our CSV file, we thus have information on weather stations (the feature) and the longitude and latitude that constitute a point on a map (the geometry). Features and geometries are connected using the `geo:hasGeometry` predicate.
 
-Before we start, we will first create the configuration file for our RML-Mapper engine. The contents of that file, which we call `weather-config.properties` is as follows:
-
-```
-mapping.file=./weather-mapping.ttl
-sources.directory=./weatherstations.csv
-output.directory=./weather-output.ttl
-output.format=TURTLE
-```
-
-This informs the engine that `weatherstations.csv` will be transformed into RDF using the mapping provided by `./weather-mapping.ttl`. The RDF will be formatted into TURTLE and written to `weather-output.ttl`.
-
-We now create `weather-mapping.ttl`, add the following prefixes and a base IRI to simplify URI notation.
+First, we create `weather-output.ttl` as an empty file. We now create `weather-mapping.ttl`, add the following prefixes and a base IRI to simplify URI notation.
 
 ```turtle
 @prefix rml: <http://semweb.mmlab.be/ns/rml#>.
@@ -80,7 +69,7 @@ For every row in the table, we use `Name` to create the URI of the subject. We a
 
 We now execute the mapping with:
 
-`$ java -jar rmlmapper-6.5.1-r371-all.jar -m weather-mapping.ttl -c weather-config.properties -o weather-output.ttl`
+`$ java -jar rmlmapper-6.5.1-r371-all.jar -m weather-mapping.ttl -o weather-output.ttl`
 
 And six triples should be generated:
 
@@ -229,20 +218,12 @@ In theory, the two logical tables are joined using the column `Name`. However, t
 ```
 
 # 5 Separating Longitude and Latitude in a Different Graph
-*Note: the "solution" of this section are to be found in the files `weather-mapping-graph.ttl` and `weather-config-graph.properties`. *
+*Note: the mapping "solution" of this section is to be found in the file `weather-mapping-graph.ttl`. *
 
 Assuming we want to keep the statements using `geo2` in a separate named graph. This means we have to use an RDF serialization that supports graphs. Both predicate object maps and subject maps can be graph statements. Comprehending which triples end up in which graphs can be tricky, but we recommend reading R2RML's algorithm. In our case, separating those triples is straightforward.
 
-First, we need to change our configuration file so that another serialization format is used. We also change the file extension of the output file to ensure that best practices are complied with. We will use [TriG](https://www.w3.org/TR/trig/) in this tutorial, which is an extension of TURTLE. Consequently, the output file will be `weather-output.properties`, and we have the following configuration file :
 
-```
-mapping.file=./weather-mapping-graph.ttl
-sources.directory=./weatherstations.csv
-output.directory=./weather-output.trig
-output.format=TRIG
-```
-
-Then we change the two predicate object maps of our weather triples map by adding a `rr:graph` statements.
+First, we change the two predicate object maps of our weather triples map by adding a `rr:graph` statements.
 
 ```turtle
     rr:predicateObjectMap [
@@ -257,6 +238,12 @@ Then we change the two predicate object maps of our weather triples map by addin
       rr:objectMap [ rml:reference "LONG" ; rr:datatype xsd:double ] ;
   ] ;
 ```
+
+We also change the file extension of the output file to ensure that best practices are complied with. We will use [TriG](https://www.w3.org/TR/trig/) in this tutorial, which is an extension of TURTLE. Consequently, the output file will be `weather-output.trig`, and we execute the mapping like follows :
+
+`$ java -jar rmlmapper-6.5.1-r371-all.jar -m weather-mapping-graph.ttl -o weather-output.trig`
+
+
 
 R2RML states that if the graph maps of both the subject map and the predicate object map are empty, then triples are written to the default graph; otherwise the triples are written to the union of both graph maps. Since the subject map has no graph maps (i.e., {}), the union is {} U {`http://data.example.org/graph/geo`}. In other words, those triples will appear in the named graph http://data.example.org/graph/geo and not in the default graph:
 
@@ -275,7 +262,7 @@ R2RML states that if the graph maps of both the subject map and the predicate ob
 ```
 
 # 6 Generating Geometries as Blank Nodes
-*Note: the "solution" of this section are to be found in the files `weather-mapping-blank.ttl` and `weather-config-blank.properties`.*
+*Note: the mapping "solution" of this section is to be found in the file `weather-mapping-blank.ttl`. *
 
 Before we continue, it is important to note that blank nodes with the same identifier in different graphs are not considered representing the same resource. In other words, given a blank node with identifier *x* in *graph1* and a blank node with the same identifier *x* in a different *graph2*, then those two blank nodes do not represent the same thing. If you want to relate nodes across graphs, then you have to use IRIs (or avail of ontology axioms or rules to infer sameness).
 
