@@ -1,4 +1,14 @@
 # RML: A Step-by-step Tutorial
+<style>
+.big-text {
+    font-size: 20px;
+    /* Autres styles CSS si nécessaire */
+}
+</style>
+
+<div class="big-text">
+Votre texte en gros caractères ici
+</div>
 
 <span style="font-size:40px;">Souail Jaadari, engineering student at Polytech Orléans</span>
 
